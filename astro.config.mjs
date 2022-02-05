@@ -9,7 +9,7 @@
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
   // Comment out "renderers: []" to enable Astro's default component support.
-  renderers: [],
+  renderers: ["@astrojs/renderer-svelte"],
   devOptions: {
     hostname: "0.0.0.0",
   },

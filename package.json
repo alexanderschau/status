@@ -10,7 +10,9 @@
     "format": "prettier -w ."
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
     "astro": "^0.22.20",
+    "js-yaml": "^4.1.0",
     "prettier": "^2.5.1",
     "prettier-plugin-astro": "^0.0.12",
     "prettier-plugin-svelte": "^2.6.0",

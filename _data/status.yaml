@@ -1,0 +1,14 @@
+groups:
+  - name: General
+    services:
+      - name: Website
+        description: "Our landing page at https://example.com"
+      - name: Matrix Chat Server
+defaultStatus: Operational
+states:
+  - name: Operational
+    color: "#22c55e"
+  - name: Down
+    color: "#c43721"
+  - name: Maintenance
+    color: "#c4a121"

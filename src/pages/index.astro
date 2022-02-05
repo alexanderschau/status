@@ -1,5 +1,17 @@
 ---
-// Component imports and setup JavaScript go here!
+import { Markdown } from "astro/components";
+import Accordion from "../lib/Accordion.svelte";
+import { getData } from "../lib/loadData.ts";
+import { readFileSync } from "fs";
+import * as yaml from "js-yaml";
+
+const load = () => {
+  const data = yaml.load(readFileSync("_data/status.yaml", "utf8"));
+  const incidents = Astro.fetchContent("../../_data/incidents/*.md");
+  return getData(data, incidents);
+};
+
+const data = load();
 ---
 
 <html lang="en">
@@ -12,7 +24,36 @@
     </style>
   </head>
 
-  <body class="text-red-500">
-    <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+  <body>
+    <div class="max-w-2xl mx-auto px-2 my-14">
+      <div class="text-3xl my-16">My Status Page</div>
+      {data.services.map((group) => (
+        <Accordion data={group} client:visible></Accordion>
+      ))}
+      <div class="text-xl font-bold my-12">Current Incidents</div>
+      {data.incidents.current.map((incident) => (
+        <div class="ml-5 my-8">
+          <div class="font-bold text-lg text-gray-900">{incident.name}</div>
+          <div class="text-sm text-gray-500">since {incident.from}</div>
+          <div class="my-3 text-gray-800">
+            <Markdown>{incident.content}</Markdown>
+          </div>
+        </div>
+      ))}
+      <div class="text-xl font-bold my-12">Past Incidents</div>
+      {data.incidents.past.map((incident) => (
+        <div class="ml-5 my-8">
+          <div class="font-bold text-lg text-gray-900">{incident.name}</div>
+          <div class="text-sm text-gray-500">since {incident.from}</div>
+          <div class="my-3 text-gray-800">
+            <Markdown>{incident.content}</Markdown>
+          </div>
+        </div>
+      ))}
+
+      <div class="text-center my-12 text-gray-500">
+        <a href="">Company Inc.</a> Status Page
+      </div>
+    </div>
   </body>
 </html>
