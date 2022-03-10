@@ -3,7 +3,20 @@ groups:
     services:
       - name: Website
         description: "Our landing page at https://example.com"
+  - name: E-Mail Services
+    services:
+      - name: SMTP Server
+      - name: IMAP Server
+      - name: Webmail Client
+      - name: Webmail Database
+  - name: Matrix Chat
+    services:
       - name: Matrix Chat Server
+      - name: WhatsApp Bridge
+      - name: RSS Bot
+      - name: Element Client
+      - name: Cinny Client
+
 defaultStatus: Operational
 states:
   - name: Operational
